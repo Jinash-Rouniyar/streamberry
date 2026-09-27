@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { TmdbEpisode, TmdbMediaDetail } from "@/lib/types";
+import { apiUrl } from "@/lib/config";
 import { PlayerShell } from "./PlayerShell";
 
 /**
@@ -22,7 +23,7 @@ export function WatchClient({ detail }: { detail: TmdbMediaDetail }) {
     if (!isTv) return;
     let cancelled = false;
     setLoadingEps(true);
-    fetch(`/api/episodes?tvId=${detail.id}&season=${season}`)
+    fetch(apiUrl(`/api/episodes?tvId=${detail.id}&season=${season}`))
       .then((r) => r.json())
       .then((data) => {
         if (cancelled) return;

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { MediaType, StreamResponse, StreamServerOption } from "@/lib/types";
+import { apiUrl } from "@/lib/config";
 import { CustomPlayer } from "./CustomPlayer";
 import { IframeFallback } from "./IframeFallback";
 
@@ -21,7 +22,7 @@ async function fetchStream(
     episode: String(episode),
   });
   if (server) params.set("server", server);
-  const res = await fetch(`/api/stream?${params.toString()}`);
+  const res = await fetch(apiUrl(`/api/stream?${params.toString()}`));
   if (!res.ok) throw new Error(`status ${res.status}`);
   return (await res.json()) as StreamResponse;
 }
@@ -89,7 +90,7 @@ export function PlayerShell({
     setProviderNote("");
     setActiveServer(null);
 
-    fetch("/api/servers")
+    fetch(apiUrl("/api/servers"))
       .then((r) => r.json())
       .then((data: { servers?: StreamServerOption[] }) => {
         if (cancelled) return;

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: "/streamberry",
   reactStrictMode: true,
   // @consumet/extensions depends on got-scraping, which ships an "exports"
   // field webpack cannot bundle. Keep it external so it's required at runtime

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ShowStatus } from "@/lib/wrestling";
+import { apiUrl } from "@/lib/config";
 import { SmartLivePlayer } from "./SmartLivePlayer";
 
 /**
@@ -17,7 +18,7 @@ export function LiveChannel({ initialStatus }: { initialStatus: ShowStatus }) {
 
   const refresh = useCallback(async () => {
     try {
-      const res = await fetch(`/api/wrestling/${initialStatus.show.id}`, {
+      const res = await fetch(apiUrl(`/api/wrestling/${initialStatus.show.id}`), {
         cache: "no-store",
       });
       if (res.ok) setStatus((await res.json()) as ShowStatus);
