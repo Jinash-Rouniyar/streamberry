@@ -1,0 +1,10 @@
+name = "streamberry-proxy"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+# Deploy with:
+#   cd worker && npx wrangler deploy
+#
+# After deploy, wrangler prints a URL like:
+#   https://streamberry-proxy.<your-subdomain>.workers.dev
+# Put that value in the app's NEXT_PUBLIC_STREAM_PROXY_URL env var.
